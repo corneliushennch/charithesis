@@ -1,28 +1,12 @@
 % This is the Charité LaTeX thesis template. Most of the work
 % for the document class was done by Sam Noble (SN), as well as this
-% template. Later comments etc. by Ben Salzberg (BTS). Additional
-% restructuring and APA support by Jess Youngberg (JY).
-% Your comments and suggestions are more than welcome; please email
-% them to cus@reed.edu
+% template. Adapted to Charité requirements by Cornelius Hennch (CN).
 %
-% See https://www.reed.edu/cis/help/LaTeX/index.html for help. There are a
-% great bunch of help pages there, with notes on
-% getting started, bibtex, etc. Go there and read it if you're not
-% already familiar with LaTeX.
-%
-% Any line that starts with a percent symbol is a comment.
-% They won't show up in the document, and are useful for notes
-% to yourself and explaining commands.
-% Commenting also removes a line from the document;
-% very handy for troubleshooting problems. -BTS
 
-% As far as I know, this follows the requirements laid out in
-% the 2002-2003 Senior Handbook. Ask a librarian to check the
-% document before binding. -SN
+% ------------------------------------------------------------------------------
+% --------------------------------- PREAMBLE -----------------------------------
+% ------------------------------------------------------------------------------
 
-%%
-%% Preamble
-%%
 % \documentclass{<something>} must begin each LaTeX document
 \documentclass[11pt,oneside]{charithesis}
 % Packages are extensions to the basic LaTeX functions. Whatever you
@@ -36,7 +20,7 @@
 \usepackage{longtable,booktabs,setspace}
 \usepackage[hyphens]{url}
 % Added by CII
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks]{hyperref} % The option hidelinks removes the colorful boxes around links.
 \usepackage{lmodern}
 \usepackage{float}
 \floatplacement{figure}{H}
@@ -66,8 +50,6 @@
 \usepackage{caption}
 \captionsetup{width=5in}
 % End of CII addition
-
-\usepackage{times} % other fonts are available like times, bookman, charter, palatino
 
 % remove boxes around links and colour the links instead
 %\usepackage{xcolor}

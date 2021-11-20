@@ -1,26 +1,29 @@
 ---
-title: 'Identification and functional validation of novel genetic mutations in primary mediastinal B-cell lymphpoma'
-# The german title is optional.
-gertitle: 'Identifikation und funktionelle Validierung neuer genetischer Mutationen im primär mediastinalen B-Zell Lymphom'
-author: 'Cornelius Hennch'
-birthplace: 'Heidelberg'
+# Required Information ---------------------------------------------------------
+title: 'Dissertation title in english'
+gertitle: 'Das ist der deutsche Titel' # The german title is optional.
+author: 'Vorname Nachname'
+birthplace: 'Berlin'
 date: '_______________' # This should be left free until the thesis is handed in.
 institution: "Medizinischen Fakultät Charité – Universitätsmedizin Berlin"
-# division: 'Medizin'
-department: 'Klinik für Hämatologie, Onkologie und Tumorimmunologie'
-advisor: 'Prof. Dr. Frederik Damm'
-# If you have more two advisors, un-silence line 10
-altadvisor: 'Dr. med. Daniel Nörenberg'
+department: 'Klinik/Institut für ...'
+advisor: 'Prof. Dr. First Advisor'
+altadvisor: 'Dr. med. Second Advisor' # If you have more two advisors, un-silence this line.
 degree: 'Doctor medicinae (Dr. med.)'
+
+# Rendering Options -----------------------------------------------------------
 keep_tex: TRUE
 knit: bookdown::render_book
 site: bookdown::bookdown_site
-
-# The next two lines allow you to change the spacing in your thesis. You can 
-# switch out \onehalfspacing with \singlespacing or \doublespacing, if desired.
+# this sets a variety of options within the Latex template that is
+# used to generate the PDF
 header-includes:
+# This allows you to change the spacing in your thesis. You can 
+# switch out \onehalfspacing with \singlespacing or \doublespacing, if desired.
     - \usepackage{setspace}\singlespacing
-
+    # This changes the font of the whole document. Other fonts are available like times, bookman, charter, palatino.
+    - \usepackage{times}
+    
 # This will automatically install the {remotes} package and {thesisdown}
 # Change this to FALSE if you'd like to install them manually on your own.
 params:
@@ -39,6 +42,7 @@ output:
 # for the .RMD files. If you are NOT producing a PDF, delete or silence
 # lines 25-39 in this YAML header.
 abstract: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims", "00-abstract.Rmd")), collapse = "\n  ")`'
+
 # If you'd rather include the preliminary content in files instead of inline
 # like below, use a command like that for the abstract above.  Note that a tab 
 # is needed on the line after the `|`.
@@ -110,7 +114,6 @@ version automatically by inputting them in the YAML at the top of this file.
 Alternatively, you can put that content in files like 00--prelim.Rmd and
 00-abstract.Rmd like done below.
 -->
-
 
 
 ```{r eval=!knitr::is_latex_output(), child=here::here("prelims", "00--prelim.Rmd")}
