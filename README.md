@@ -1,7 +1,11 @@
 
-<!-- README.md is generated from README.Rmd via `devtools::build_readme()`. Please edit README.Rmd -->
+ToDo: Write README
+
+<!-- README.md is generated from README.Rmd via `devtools::build_readme()`. Please edit README.Rmd 
 
 # thesisdown <img src="man/figures/thesisdown_hex.png" align="right" width=200 />
+
+-->
 
 This project was inspired by the
 [bookdown](https://github.com/rstudio/bookdown) package and is an
