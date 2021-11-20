@@ -24,18 +24,18 @@ header-includes:
     # This changes the font of the whole document. Other fonts are available like times, bookman, charter, palatino.
     - \usepackage{times}
     
-# This will automatically install the {remotes} package and {thesisdown}
+# This will automatically install the {remotes} package and {charithesis}
 # Change this to FALSE if you'd like to install them manually on your own.
 params:
-  'Install needed packages for {thesisdown}': True
+  'Install needed packages for {charithesis}': True
 
 # Remove the hashtag to specify which version of output you would like.
 # Can only choose one at a time.
 output:
-  thesisdown::thesis_pdf: default 
-#  thesisdown::thesis_gitbook: default         
-#  thesisdown::thesis_word: default
-#  thesisdown::thesis_epub: default
+  charithesis::thesis_pdf: default 
+#  charithesis::thesis_gitbook: default         
+#  charithesis::thesis_word: default
+#  charithesis::thesis_epub: default
 
 # If you are creating a PDF you'll need to write your preliminary content 
 # (e.g., abstract, acknowledgements) below or use code similar to line 25-26 
@@ -77,11 +77,11 @@ If you receive a duplicate label error after knitting, make sure to delete the i
 -->
 
 ```{r include_packages, include=FALSE}
-# This chunk ensures that the thesisdown package is
-# installed and loaded. This thesisdown package includes
+# This chunk ensures that the charithesis package is
+# installed and loaded. This charithesis package includes
 # the template files for the thesis.
 if (!require(remotes)) {
-  if (params$`Install needed packages for {thesisdown}`) {
+  if (params$`Install needed packages for {charithesis}`) {
     install.packages("remotes", repos = "https://cran.rstudio.com")
   } else {
     stop(
@@ -90,20 +90,20 @@ if (!require(remotes)) {
     )
   }
 }
-if (!require(thesisdown)) {
-  if (params$`Install needed packages for {thesisdown}`) {
-    remotes::install_github("ismayc/thesisdown")
+if (!require(charithesis)) {
+  if (params$`Install needed packages for {charithesis}`) {
+    remotes::install_github("corneliushennch/charithesis")
   } else {
     stop(
       paste(
         "You need to run",
-        'remotes::install_github("ismayc/thesisdown")',
+        'remotes::install_github("corneliushennch/charithesis")',
         "first in the Console."
       )
     )
   }
 }
-library(thesisdown)
+library(charithesis)
 # Set how wide the R output will go
 options(width = 70)
 ```
