@@ -1,27 +1,31 @@
 ---
-title: 'My Final College Paper'
-author: 'Your R. Name'
-date: 'May 20xx'
-institution: 'Reed College'
-division: 'Mathematics and Natural Sciences'
-advisor: 'Advisor F. Name'
-# If you have more two advisors, un-silence line 7
-#altadvisor: 'Your Other Advisor'
-department: 'Mathematics'
-degree: 'Bachelor of Arts'
+title: 'Identification and functional validation of novel genetic mutations in primary mediastinal B-cell lymphpoma'
+# The german title is optional.
+gertitle: 'Identifikation und funktionelle Validierung neuer genetischer Mutationen im primär mediastinalen B-Zell Lymphom'
+author: 'Cornelius Hennch'
+birthplace: 'Heidelberg'
+date: '_______________' # This should be left free until the thesis is handed in.
+institution: "Medizinischen Fakultät Charité – Universitätsmedizin Berlin"
+# division: 'Medizin'
+department: 'Klinik für Hämatologie, Onkologie und Tumorimmunologie'
+advisor: 'Prof. Dr. Frederik Damm'
+# If you have more two advisors, un-silence line 10
+altadvisor: 'Dr. med. Daniel Nörenberg'
+degree: 'Doctor medicinae (Dr. med.)'
+keep_tex: TRUE
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 
 # The next two lines allow you to change the spacing in your thesis. You can 
 # switch out \onehalfspacing with \singlespacing or \doublespacing, if desired.
 header-includes:
-    - \usepackage{setspace}\onehalfspacing
+    - \usepackage{setspace}\singlespacing
 
 # This will automatically install the {remotes} package and {thesisdown}
 # Change this to FALSE if you'd like to install them manually on your own.
 params:
   'Install needed packages for {thesisdown}': True
-  
+
 # Remove the hashtag to specify which version of output you would like.
 # Can only choose one at a time.
 output:
@@ -39,15 +43,16 @@ abstract: '`r if(knitr:::is_latex_output()) paste(readLines(here::here("prelims"
 # like below, use a command like that for the abstract above.  Note that a tab 
 # is needed on the line after the `|`.
 acknowledgements: |
-  I want to thank a few people.
+  I want to thank a few people. Most of all my wonderful girlfriend.
 dedication: |
-  You can have a dedication here if you wish. 
+  You can have a dedication here if you wish. I dedicate this thesis to my grandma and my best friendt.
 preface: |
   This is an example of a thesis setup to use the reed thesis document class 
-  (for LaTeX) and the R bookdown package, in general.
+  (for LaTeX) and the R bookdown package, in general. If you'd prefer to not include a Dedication, for example, simply delete the section entirely, or silence them (add # before each line). 
   
 # Specify the location of the bibliography below
 bibliography: bib/thesis.bib
+
 # Download your specific csl file and refer to it in the line below.
 csl: csl/apa.csl
 lot: true

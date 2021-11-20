@@ -10,6 +10,7 @@
 % May 2005 Patrick Carlisle Table of contents chapter definition
 % 2004-2005 Ben Salzberg (BTS) a variety of tweaks here and in the template
 % 2015 Chester Ismay (CII) modified to create R Markdown template
+% 2021 Cornelius Hennch (CH) modified to create charithesis template
 %
 % Oddities:
 %
@@ -21,10 +22,13 @@
 %  be prepared to have the page numbering messed up. Not a big deal,
 %  but I'm not sure how to fix it.
 %
-%
+
+% ------------------------------------------------------------------------------
+% --------------------------------- PREAMBLE -----------------------------------
+% ------------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{reedthesis}[2004/01/27 The Reed College Thesis Class]
+\ProvidesClass{charithesis}[2021/11/19 Charite Thesis Class]
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
@@ -35,6 +39,7 @@
 % Added by CII
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
+
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
@@ -96,7 +101,8 @@
 % \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
 % \newcommand{\NormalTok}[1]{{#1}}
 
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% prevent overfull lines
+\setlength{\emergencystretch}{3em}  
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 % End of CII add
@@ -104,16 +110,16 @@
 % This gives us rules below the headers
 \AtBeginDocument{%
   \fancyhf{}
-  \fancyhead[LE,RO]{\thepage}
+  \fancyhead[R]{\thepage}
 %  \fancyhead[RE]{\slshape \leftmark}
 %  \fancyhead[LO]{\slshape \rightmark}
 %	The above makes your headers in all caps. If you would like different headers, choose one of the following options (be sure to remove the % symbol from both the right and left headers):
-	 \fancyhead[RE]{\slshape \nouppercase \leftmark} % This makes the headers on the RIGHT side pages be italic and use lowercase With Capitals When Specified.
-	\fancyhead[LO]{\slshape \nouppercase \rightmark} % This does the same thing to the LEFT side pages
+%	 \fancyhead[L]{\slshape \nouppercase \leftmark} % This makes the headers on the RIGHT side pages be italic and use lowercase With Capitals When Specified.
+\fancyhead[L]{\slshape \nouppercase \rightmark} % This does the same thing to the LEFT side pages
 %	or
 %	\fancyhead[RE]{\scshape \leftmark} % The RIGHT headers will be in small caps.
 %	\fancyhead[LO]{\scshape \rightmark} %  And so will the LEFT headers
-  \pagestyle{fancy}
+\pagestyle{fancy}
 
 % Psych majors: You do not need the following six lines, as it conflicts with apacite, so comment them out.
   \let\oldthebibliography=\thebibliography
@@ -132,7 +138,7 @@
   }{\endoldtheindex}
 }
 
-% Stolen from book.cls and modified
+% Taken from book.cls and modified
 \let\RToldchapter\chapter
 \renewcommand{\chapter}{\if@openright\RTcleardoublepage
 		    \else\clearpage\fi
@@ -165,6 +171,7 @@
                       \@afterheading
                     \fi}
 
+% adapted \cleardoublepage command
 \newcommand{\RTcleardoublepage}{
 	\clearpage\if@twoside \ifodd\c@page\else
 	\thispagestyle{empty}\hbox{}\newpage
@@ -192,6 +199,7 @@
 %\addtolength\textheight{\headheight}
 %\addtolength\textheight{\headsep}
 
+%variable definition
 \def\degree#1{\gdef \@degree{#1}}
 \def\@degree{\@latex@warning@no@line{No \noexpand\degree given}}
 \def\institution#1{\gdef \@institution{#1}}
@@ -271,77 +279,75 @@
   \fontsize{12}{14}\selectfont
 }{\clearpage \if@restonecol\twocolumn\fi}%
 
-
+% Information supplied to PDF output.
 \ifx\@pdfoutput\@undefined
   \newcommand{\RTpercent}{\@percentchar\space}
-  \AtBeginDvi{\special{!\RTpercent Reed College LaTeX Thesis Class 2001/12/04 SN}}
-  \AtBeginDvi{\special{rawpostscript \RTpercent Reed College LaTeX Thesis Class 2001/12/04 SN}}
+  \AtBeginDvi{\special{!\RTpercent Charite Thesis Class 2021/11/19 CH}}
+  \AtBeginDvi{\special{rawpostscript \RTpercent Charite Thesis Class 2021/11/19 CH}}
 \else
-  \AtEndDocument{\pdfinfo{/Creator	(Reed College LaTeX Thesis Class 2001/12/04 SN)}}
+  \AtEndDocument{\pdfinfo{/Creator	(Charite Thesis Class 2021/11/19 CH)}}
 \fi
 
-% I hacked the title page to all be the same font size
-% as requested by the library, BTS 2005
-
+% ------------------------------------------------------------------------------
+% --------------------- frontmatter: Title page --------------------------------
+% ------------------------------------------------------------------------------
+% Changed by CH to meet requirements of the Charité.
 \renewcommand{\maketitle}{%
   {\pagestyle{empty}
-  \fontsize{12}{14}\selectfont
+  \fontsize{14}{16}\selectfont
   \begin{titlepage}
   \newpage
   \let\footnotesize\small
   \let\footnoterule\relax
   \let \footnote \thanks
 
-  \baselineskip = 1.4\baselineskip
+  \baselineskip = 1.3\baselineskip
   \setbox0=\hbox{of the Requirements for the Degree}
 
   \begin{center}
     \setcounter{page}{1}
-    \null\vfil
-    {\fontsize{12}{14}\selectfont \@title}
+    %\null\vfil
+    Aus \@department \\
+    der \@institution \\
     \vfil
-    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+    DISSERTATION
     \vfil
-    A Thesis \\
-    Presented to \\
-    \@thedivisionof \ \@division \\
-    \@institution
+    {\fontsize{16}{18}\selectfont \@title \\
+    \vskip 0.75em
+    \@gertitle}
     \vfil
-    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
-    \vfil
-    In Partial Fulfillment \\
-    of the Requirements for the Degree \\
+    zur Erlangung des akademischen Grades\\
     \@degree
     \vfil
-    \centerline{\hbox to \wd0 {\hbox{}\hrulefill\hbox{}}}
+    \begin{tabular}[t]{p{15em}}
+    vorgelegt der \@institution \\
+    \end{tabular}\par
+    \vfil
+    von \\
     \bigskip
-    \centerline{}
-    \bigskip
-    {\fontsize{12}{14}\selectfont \lineskip .75em
-    \begin{tabular}[t]{c}%
-      \@author
-    \end{tabular}\par}
-    \vskip 1.5em
-    {\fontsize{12}{14}\selectfont \@date \par}
+    \@author \\ 
+    aus \@birthplace
+    \vfil
+    Datum der Promotion: \@date 
   \end{center}\par
   \end{titlepage}
 
-%% Approved for the division page
-  \cleardoublepage
-  {\fontsize{12}{14}
-  \setbox0=\hbox{Approved for the \@approvedforthe}
-  \thispagestyle{empty}
-  \null\vfil		% just below center of page
-  \par\vskip 6cm	% below center, not center
-  \centerline{\copy0}	% approved
-  \centerline{(\@department)} %major
-  \vskip 1cm		%space to sign
-  \centerline{\makebox[\wd0][c]{\hrulefill}
-	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\hrulefill} \fi}
-  \centerline{\makebox[\wd0][c]{\@advisor}
-	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\@altadvisor} \fi}
-  \par\vfil\null}
-  \cleardoublepage
+%% Approved for the division page -> not need 
+%   \cleardoublepage
+%   {\fontsize{12}{14}
+%   \setbox0=\hbox{Approved for the \@approvedforthe}
+%   \thispagestyle{empty}
+%   \null\vfil		% just below center of page
+%   \par\vskip 6cm	% below center, not center
+%   \centerline{\copy0}	% approved
+%   \centerline{(\@department)} %major
+%   \vskip 1cm		%space to sign
+%   \centerline{\makebox[\wd0][c]{\hrulefill}
+% 	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\hrulefill} \fi}
+%   \centerline{\makebox[\wd0][c]{\@advisor}
+% 	\if@altadvisor \makebox[.5in]{} \makebox[\wd0][c]{\@altadvisor} \fi}
+%   \par\vfil\null}
+%   \cleardoublepage
   }
 }
 
@@ -357,3 +363,7 @@
 \newcommand{\Dedication}[1]{\def\@Dedication{#1}}
 \newcommand{\Preface}[1]{\def\@Preface{#1}}
 % End of CII add
+
+% Added by CH
+\newcommand{\birthplace}[1]{\def\@birthplace{#1}}
+\newcommand{\gertitle}[1]{\def\@gertitle{#1}}

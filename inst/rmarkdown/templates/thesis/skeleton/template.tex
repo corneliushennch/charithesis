@@ -1,4 +1,4 @@
-% This is the Reed College LaTeX thesis template. Most of the work
+% This is the Charité LaTeX thesis template. Most of the work
 % for the document class was done by Sam Noble (SN), as well as this
 % template. Later comments etc. by Ben Salzberg (BTS). Additional
 % restructuring and APA support by Jess Youngberg (JY).
@@ -24,7 +24,7 @@
 %% Preamble
 %%
 % \documentclass{<something>} must begin each LaTeX document
-\documentclass[12pt,twoside]{reedthesis}
+\documentclass[11pt,oneside]{charithesis}
 % Packages are extensions to the basic LaTeX functions. Whatever you
 % want to typeset, there is probably a package out there for it.
 % Chemistry (chemtex), screenplays, you name it.
@@ -34,10 +34,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb,amsthm}
 \usepackage{longtable,booktabs,setspace}
-\usepackage{chemarr} %% Useful for one reaction arrow, useless if you're not a chem major
 \usepackage[hyphens]{url}
 % Added by CII
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{lmodern}
 \usepackage{float}
 \floatplacement{figure}{H}
@@ -46,6 +45,7 @@
 % End of CII addition
 \usepackage{rotating}
 
+
 % Next line commented out by CII
 %%% \usepackage{natbib}
 % Comment out the natbib line above and uncomment the following two lines to use the new
@@ -53,7 +53,6 @@
 % bibliography is included.
 %\usepackage{biblatex-chicago}
 %\bibliography{thesis}
-
 
 % Added by CII (Thanks, Hadley!)
 % Use ref for internal links
@@ -68,7 +67,16 @@
 \captionsetup{width=5in}
 % End of CII addition
 
-% \usepackage{times} % other fonts are available like times, bookman, charter, palatino
+\usepackage{times} % other fonts are available like times, bookman, charter, palatino
+
+% remove boxes around links and colour the links instead
+%\usepackage{xcolor}
+%\hypersetup{
+%    colorlinks,
+%    linkcolor={red!50!black},
+%    citecolor={blue!50!black},
+%    urlcolor={blue!80!black}
+%}
 
 % Syntax highlighting #22
 $if(highlighting-macros)$
@@ -77,8 +85,11 @@ $endif$
 
 % To pass between YAML and LaTeX the dollar signs are added by CII
 \title{$title$}
+$if(gertitle)$
+\gertitle{$gertitle$}
+$endif$
 \author{$author$}
-% The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
+\birthplace{$birthplace$}
 \date{$date$}
 \division{$division$}
 \advisor{$advisor$}
@@ -195,18 +206,6 @@ $endif$
 \frontmatter % this stuff will be roman-numbered
 \pagestyle{empty} % this removes page numbers from the frontmatter
 
-$if(acknowledgements)$
-  \begin{acknowledgements}
-    $acknowledgements$
-  \end{acknowledgements}
-$endif$
-
-$if(preface)$
-  \begin{preface}
-    $preface$
-  \end{preface}
-$endif$
-
 $if(toc)$
   \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$black$endif$}
   \setcounter{secnumdepth}{$toc-depth$}
@@ -222,6 +221,23 @@ $if(lof)$
   \listoffigures
 $endif$
 
+\mainmatter % here the regular arabic numbering starts
+\pagestyle{fancyplain} % turns page numbering back on
+
+$body$
+
+$if(acknowledgements)$
+  \begin{acknowledgements}
+    $acknowledgements$
+  \end{acknowledgements}
+$endif$
+
+$if(preface)$
+  \begin{preface}
+    $preface$
+  \end{preface}
+$endif$
+
 $if(abstract)$
   \begin{abstract}
     $abstract$
@@ -234,13 +250,6 @@ $if(dedication)$
   \end{dedication}
 $endif$
 
-\mainmatter % here the regular arabic numbering starts
-\pagestyle{fancyplain} % turns page numbering back on
-
-$body$
-
-
 % Index?
 
 \end{document}
-
