@@ -64,7 +64,7 @@ if (!require(thesisdown)) {
     )
   }
 }
-library(thesisdown)
+library(charithesis)
 library(dplyr)
 library(ggplot2)
 library(knitr)
