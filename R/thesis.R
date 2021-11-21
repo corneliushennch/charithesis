@@ -1,7 +1,7 @@
 #' Creates an R Markdown PDF Thesis document
 #'
 #' This is a function called in output in the YAML of the driver Rmd file
-#' to specify using the Reed College Senior Thesis LaTeX template and cls files.
+#' to specify using the Charité Thesis LaTeX template and cls files.
 #'
 #' @export
 #'
@@ -13,7 +13,7 @@
 #' "default", "tango", "pygments", "kate", "monochrome", "espresso", "zenburn",
 #' and "haddock". Pass NULL to prevent syntax highlighting.
 #'
-#' @return A modified \code{pdf_document} based on the Reed Senior Thesis LaTeX
+#' @return A modified \code{pdf_document} based on the Charité Thesis LaTeX
 #'   template
 #' @examples
 #' \dontrun{
@@ -108,13 +108,13 @@ thesis_gitbook <- function(...) {
 #'
 #' @export
 #' @return A Word Document based on (hopefully soon, but not currently)
-#' the Reed Senior Thesis Word template
+#' the Charité Thesis Word template
 #' @examples
 #' \dontrun{
 #' output:charithesis::thesis_word
 #' }
-thesis_word <- function(...) {
-  base <- bookdown::word_document2(...)
+thesis_word <- function(toc = TRUE, ...) {
+  base <- bookdown::word_document2(toc = toc, ...)
 
   # Mostly copied from knitr::render_sweave
   base$knitr$opts_chunk$comment <- NA
